@@ -15,7 +15,7 @@ describe("WTAO contract", function () {
     gasPrice: ethers.BigNumber,
   } = {
     gasLimit: 2000000,
-    gasPrice: ethers.parseUnits("10", "gwei"),
+    gasPrice: ethers.parseUnits("20", "gwei"),
   };
 
   before(async () => {
