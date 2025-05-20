@@ -12,18 +12,16 @@ describe("WTAO contract", function () {
   let caller: any;
   let gasParameters: {
     gasLimit: ethers.BigNumber,
-    maxFeePerGas: ethers.BigNumber,
-    maxPriorityFeePerGas: ethers.BigNumber,
+    gasPrice: ethers.BigNumber,
   } = {
     gasLimit: 2000000,
-    maxFeePerGas: ethers.parseUnits("10", "gwei"),
-    maxPriorityFeePerGas: ethers.parseUnits("10", "gwei"),
+    gasPrice: ethers.parseUnits("10", "gwei"),
   };
 
   before(async () => {
     provider = ethers.provider;
     [caller] = await ethers.getSigners();
-    sutContract = await ethers.deployContract("WTAO", gasParameters);
+    sutContract = await ethers.deployContract("WTAO", { ...gasParameters});
     await sutContract.waitForDeployment();
     console.log(`Contract deployed at address: ${await sutContract.getAddress()}`);
   });
@@ -39,9 +37,10 @@ describe("WTAO contract", function () {
     const wtaoBalance = await sutContract.balanceOf(caller);
     expect(wtaoBalance).to.be.eq(ethers.parseEther("0.1"));
 
-    // Check that TAO is stored in the contract
+    // Check that TAO is stored in the contract (less 500 rao existential deposit 
+    // that we don't see on the EVM side)
     const tvlBalance = await sutContract.getContractETHBalance();
-    expect(tvlBalance).to.be.eq(ethers.parseEther("0.1"));
+    expect(tvlBalance).to.be.eq(ethers.parseEther("0.1") - 500_000_000_000n);
 
     // Check that user balance decreased
     const balanceAfter = await provider.getBalance(caller.address);

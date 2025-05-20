@@ -1,0 +1,10 @@
+# WTAO Contract
+
+## Deployer address
+
+H160:
+0x6ce97D4154A0FD893ED6FB6aB5A7B20F98340DE2
+
+ss58 mirror:
+5GQ9R3hCR2DDZSk2ytYppNhkjfaFtexzt6SmxPG7wrfSGENN
+

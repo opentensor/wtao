@@ -6,7 +6,7 @@
     "build": "npx hardhat compile",
     "deploy-local": "npx hardhat run scripts/deploy.ts --network local",
     "deploy-testnet": "npx hardhat run scripts/deploy.ts --network subevm",
-    "test": "REPORT_GAS=true npx hardhat test --network hardhat",
+    "test": "REPORT_GAS=true npx hardhat test --network local",
     "deposit-local": "npx hardhat run scripts/deposit/main --network local",
     "withdraw-local": "npx hardhat run scripts/withdrawal.ts --network local",
     "balance-local": "npx hardhat run scripts/get-balance.ts --network local",
